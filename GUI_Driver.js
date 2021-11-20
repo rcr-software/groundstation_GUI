@@ -60,7 +60,6 @@ function draw() {
   solOnePane.display();
   solTwoPane.display();
   altPane.display();
-  altPane.x1 *= 1.001;
   reader.readAsText(packetTextFile);
   console.log(reader.result);
 }
