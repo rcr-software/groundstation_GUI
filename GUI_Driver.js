@@ -1,13 +1,9 @@
-//This is the first thing I have ever written in JavaScript. There will be boilerplate. It will be somewhat gross. I hope to have cleared up some of the muck with
-//loads of comments. E-mail me at jahigd02@louisville.edu (or tap on my shoulder if we're at the garage) if something stupid doesn't make sense.
 var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
 
 let dataPacket = [6];
 
-let packetTextFile = new File(["foo"], 'C:\\Users\\PMpun\\Documents\\Code\\RCR\\Project 1 - Python List Writing\\ListWriting_MKII_Python\\currentData.txt');
-let reader = new FileReader();
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
     constructor (x1, y1, width, height, title, titleXPad, titleYPad, titleFontSize) {
@@ -60,7 +56,5 @@ function draw() {
   solOnePane.display();
   solTwoPane.display();
   altPane.display();
-  reader.readAsText(packetTextFile);
-  console.log(reader.result);
 }
 
