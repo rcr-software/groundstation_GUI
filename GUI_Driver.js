@@ -61,11 +61,11 @@ function draw() {
   solOnePane.display();
   solTwoPane.display();
   altPane.display();
-
+/*
   fetch("test.json")
   .then(response => response.json())
   .then(json => altPane.title=json);
-
+*/
   altPane.x1*=1.0001;
 }
 
