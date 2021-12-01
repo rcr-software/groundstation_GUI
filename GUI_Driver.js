@@ -2,14 +2,10 @@ var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
 var dataPacket = [6];
-/*
-fetch('something.txt')
-  .then(response => response.text())
-  .then(data => {
-  	// Do something with your data
-  	console.log(data);
-  });
-*/
+fetch("test.json")
+  .then(response => response.json())
+  .then(json => altPane.title=json);
+  altPane.x1*=1.0001;
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
     constructor (x1, y1, width, height, title, titleXPad, titleYPad, titleFontSize) {
@@ -61,9 +57,6 @@ function draw() {
   solOnePane.display();
   solTwoPane.display();
   altPane.display();
-  fetch("test.json")
-  .then(response => response.json())
-  .then(json => altPane.title=json);
-  altPane.x1*=1.0001;
+  
 }
 
