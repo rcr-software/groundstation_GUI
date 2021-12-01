@@ -45,7 +45,6 @@ function setup() {
   createCanvas(trueSizeX, trueSizeY); // create the canvas with size to be truesizeX x truesizeY
   solOnePane = new Pane(10, 10, 200, 200, 'Solenoid One', 20, 30, 25);
   solTwoPane = new Pane(10,215,200,405, 'Solenoid Two', 20, 30, 25);
-  altPane = new Pane(215, 10, 800, 405, "Altitude", 250, 35, 25);
   
 }
 
@@ -54,9 +53,5 @@ function draw() {
   solOnePane.display();
   solTwoPane.display();
   altPane.display();
-  fetch("test.json")
-  .then(response => response.json())
-  .then(json => altPane.title=json);
-  console.log("it's working fine");
 }
 
