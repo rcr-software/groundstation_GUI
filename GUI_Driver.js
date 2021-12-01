@@ -57,6 +57,6 @@ function draw() {
   fetch("test.json")
   .then(response => response.json())
   .then(json => altPane.title=json);
-  altPane.x1*=1.0001;
+  console.log("it's working fine");
 }
 
