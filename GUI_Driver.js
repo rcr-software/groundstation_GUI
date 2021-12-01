@@ -52,7 +52,6 @@ function draw() {
   background(245);
   solOnePane.display();
   solTwoPane.display();
-  altPane.display();
   fetch("test.json")
   .then(response => response.json())
   .then(json => solTwoPane.title=json);
