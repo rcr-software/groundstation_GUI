@@ -47,12 +47,13 @@ function setup() {
   createCanvas(trueSizeX, trueSizeY); // create the canvas with size to be truesizeX x truesizeY
   solOnePane = new Pane(10, 10, 200, 200, 'Solenoid One', 20, 30, 25);
   solTwoPane = new Pane(10,215,200,405, 'Solenoid Two', 20, 30, 25);
-  console.log(result);
+  
 }
 
 function draw() {
   background(245);
   solOnePane.display();
   solTwoPane.display();
+  console.log(result);
 }
 
