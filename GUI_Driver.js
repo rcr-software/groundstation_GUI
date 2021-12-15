@@ -1,7 +1,7 @@
 var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
-var dataPacket = [6];
+let result;
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
     constructor (x1, y1, width, height, title, titleXPad, titleYPad, titleFontSize) {
@@ -40,12 +40,14 @@ function preload()
                            // (this was done so desired screensize could be changed at the top of the script and have the effect cascade down throughout.)
   trueSizeY = windowHeight;
 
+  result = loadStrings('/test.txt');
+
 }
 function setup() {
   createCanvas(trueSizeX, trueSizeY); // create the canvas with size to be truesizeX x truesizeY
   solOnePane = new Pane(10, 10, 200, 200, 'Solenoid One', 20, 30, 25);
   solTwoPane = new Pane(10,215,200,405, 'Solenoid Two', 20, 30, 25);
-  
+  console.log(result);
 }
 
 function draw() {
