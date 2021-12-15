@@ -40,7 +40,7 @@ function preload()
                            // (this was done so desired screensize could be changed at the top of the script and have the effect cascade down throughout.)
   trueSizeY = windowHeight;
 
-  
+  result = loadStrings('/test.txt');
 
 }
 function setup() {
@@ -52,9 +52,9 @@ function setup() {
 
 function draw() {
   background(245);
+  solOnePane.text = result[0];
   solOnePane.display();
+  
   solTwoPane.display();
-  result = loadStrings('/test.txt');
-  console.log(result);
 }
 
