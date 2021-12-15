@@ -59,6 +59,6 @@ function draw() {
 
 function testData(result)
 {
-  solOnePane.titleText = result[0];
+  solOnePane.title = result[0];
 }
 
