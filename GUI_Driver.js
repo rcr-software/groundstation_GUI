@@ -52,7 +52,7 @@ function setup() {
 
 function draw() {
   background(245);
-  solOnePane.text = result[0];
+  solOnePane.titleText = result[0];
   solOnePane.display();
   
   solTwoPane.display();
