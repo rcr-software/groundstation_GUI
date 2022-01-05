@@ -4,6 +4,9 @@ let edgeSmooth = 15;
 var result;
 var dataPacket;
 let altitudeArray = [];
+var altitude;
+let packetNumArray = [];
+var packetnum;
 var filePath;
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
@@ -38,14 +41,22 @@ class Pane { // 'Pane' object representing the Pane holding a GUI Element. Shoul
 }
 
 class LineGraph {
-  constructor (LBound, RBound, UBound, DBound)
+  constructor (LBound, RBound, UBound, DBound, nodeScaler)
   {
     this.LBound = LBound;
     this.RBound = RBound;
     this.UBound = UBound;
     this.DBound = DBound;
+    this.nodeScaler = nodeScaler;
   }
+  display()
+  {
+    var nodeX, nodeY;
+    nodeX = this.LBound + packetnum * this.nodeScaler;
+    nodeY = this.DBound + altitude * this.nodeScaler;
+    circle(nodeX, nodeY, 20);
 
+  }
 
 }
 
@@ -77,7 +88,9 @@ function draw() {
 function handleData(result)
 {
   dataPacket = result[result.length-2];
-  let altitude = parseInt(dataPacket.slice(11,19));
+  altitude = parseInt(dataPacket.slice(11,19));
+  packetnum = parseInt(dataPacket.slice(2,9));
+  packetNumArray.push(packetnum);
   altitudeArray.push(altitude);
 
 }
