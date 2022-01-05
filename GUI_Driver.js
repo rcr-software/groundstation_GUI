@@ -41,19 +41,20 @@ class Pane { // 'Pane' object representing the Pane holding a GUI Element. Shoul
 }
 
 class LineGraph {
-  constructor (LBound, RBound, UBound, DBound, nodeScaler)
+  constructor (LBound, RBound, UBound, DBound, nodeScalerX, nodeScalerY)
   {
     this.LBound = LBound;
     this.RBound = RBound;
     this.UBound = UBound;
     this.DBound = DBound;
-    this.nodeScaler = nodeScaler;
+    this.nodeScalerX = nodeScalerX;
+    this.nodeScalerY = nodeScalerY;
   }
   display()
   {
     var nodeX, nodeY;
-    nodeX = this.LBound + packetnum * this.nodeScaler;
-    nodeY = this.DBound + altitude * this.nodeScaler;
+    nodeX = this.LBound + packetnum * this.nodeScalerX;
+    nodeY = this.DBound + altitude * this.nodeScalerY;
     circle(nodeX, nodeY, 20);
 
   }
@@ -75,6 +76,8 @@ function setup() {
   createCanvas(trueSizeX, trueSizeY); // create the canvas with size to be truesizeX x truesizeY
   solOnePane = new Pane(10, 10, 200, 200, 'Solenoid One', 20, 30, 25);
   solTwoPane = new Pane(10,215,200,405, 'Solenoid Two', 20, 30, 25);
+  LG1 = new LineGraph(10,10,200,200,5,1);
+
   
 }
 
@@ -83,13 +86,14 @@ function draw() {
   result = loadStrings(filePath, handleData);
   solOnePane.display();
   solTwoPane.display();
+  LG1.display();
 }
 
 function handleData(result)
 {
   dataPacket = result[result.length-2];
   altitude = parseInt(dataPacket.slice(11,19));
-  packetnum = parseInt(dataPacket.slice(2,9));
+  packetnum = parseInt(dataPacket.slice(2,10));
   packetNumArray.push(packetnum);
   altitudeArray.push(altitude);
 
