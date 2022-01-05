@@ -2,6 +2,7 @@ var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
 var result;
+var data;
 var filePath;
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
@@ -41,7 +42,7 @@ function preload()
                            // (this was done so desired screensize could be changed at the top of the script and have the effect cascade down throughout.)
   trueSizeY = windowHeight;
 
-  filePath = '/home/pi/Desktop/GroundStation/New/Groundstation Code/Transmition_Evaluation_File.txt';
+  filePath = '/data.txt';
 
   result = loadStrings(filePath);
 
@@ -55,13 +56,13 @@ function setup() {
 
 function draw() {
   background(245);
-  result = loadStrings(filePath, testData);
+  result = loadStrings(filePath, handleData);
   solOnePane.display();
   solTwoPane.display();
 }
 
-function testData(result)
+function handleData(result)
 {
-  solOnePane.title = result[0];
+  data = result[result.length-1];
 }
 
