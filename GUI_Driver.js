@@ -53,8 +53,8 @@ class LineGraph {
   display()
   {
     var nodeX, nodeY;
-    nodeX = this.LBound + packetnum * this.nodeScalerX;
-    nodeY = this.DBound + altitude * this.nodeScalerY;
+    nodeX = this.LBound + (packetnum * this.nodeScalerX);
+    nodeY = this.DBound - (altitude * this.nodeScalerY);
     circle(nodeX, nodeY, 20);
 
   }
