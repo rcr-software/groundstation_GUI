@@ -2,7 +2,8 @@ var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
 var result;
-var data;
+var dataPacket;
+let altitudeArray = [];
 var filePath;
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
@@ -36,6 +37,18 @@ class Pane { // 'Pane' object representing the Pane holding a GUI Element. Shoul
     }
 }
 
+class LineGraph {
+  constructor (LBound, RBound, UBound, DBound)
+  {
+    this.LBound = LBound;
+    this.RBound = RBound;
+    this.UBound = UBound;
+    this.DBound = DBound;
+  }
+
+
+}
+
 function preload()
 {
   trueSizeX = windowWidth; // "True Size" is the size element of the entire screen. Here, it's defined as the size of the window's width and height.
@@ -63,6 +76,9 @@ function draw() {
 
 function handleData(result)
 {
-  data = result[result.length-1];
+  dataPacket = result[result.length-2];
+  let altitude = parseInt(dataPacket.slice(11,19));
+  altitudeArray.push(altitude);
+
 }
 
