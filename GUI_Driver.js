@@ -49,18 +49,28 @@ class LineGraph {
     this.DBound = DBound;
     this.nodeScalerX = nodeScalerX;
     this.nodeScalerY = nodeScalerY;
+    this.xStretch = 0;
   }
   display()
   {
     var nodeX, nodeY;
     nodeX = this.LBound + (packetnum * this.nodeScalerX);
     nodeY = this.DBound - (altitude * this.nodeScalerY);
+
+    if (nodeX >= RBound)
+    {
+      this.xStretch = nodeX - packetnum;
+    } else  
+    {
+      this.xStretch = 0;
+    }
+
     circle(nodeX, nodeY, 20);
     let l = altitudeArray.length;
 
     for (let i = 0; i < l; i++)
     {
-      line(packetNumArray[i-1]*this.nodeScalerX, altitudeArray[i-1]*this.nodeScalerY, packetNumArray[i]*this.nodeScalerX, altitudeArray[i]*this.nodeScalerY);
+      line(packetNumArray[i-1]*this.nodeScalerX - this.xStretch, altitudeArray[i-1]*this.nodeScalerY, packetNumArray[i]*this.nodeScalerX- this.xStretch, altitudeArray[i]*this.nodeScalerY);
     }
   }
 
