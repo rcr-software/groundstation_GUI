@@ -56,7 +56,12 @@ class LineGraph {
     nodeX = this.LBound + (packetnum * this.nodeScalerX);
     nodeY = this.DBound - (altitude * this.nodeScalerY);
     circle(nodeX, nodeY, 20);
+    let l = altitudeArray.length;
 
+    for (let i = 0; i < l; i++)
+    {
+      line(packetNumArray[i-1]*this.nodeScalerX, altitudeArray[i-1]*this.nodeScalerY, packetNumArray[i]*this.nodeScalerX, altitudeArray[i]*this.nodeScalerY);
+    }
   }
 
 }
