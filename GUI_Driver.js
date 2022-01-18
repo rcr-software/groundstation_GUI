@@ -1,13 +1,6 @@
 var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
-var result;
-var dataPacket;
-let altitudeArray = [];
-var altitude;
-let packetNumArray = [];
-var packetnum;
-var filePath;
 
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
     constructor (x1, y1, width, height, title, titleXPad, titleYPad, titleFontSize) {
@@ -40,77 +33,20 @@ class Pane { // 'Pane' object representing the Pane holding a GUI Element. Shoul
     }
 }
 
-class LineGraph {
-  constructor (LBound, RBound, UBound, DBound, nodeScalerX, nodeScalerY)
-  {
-    this.LBound = LBound;
-    this.RBound = RBound;
-    this.UBound = UBound;
-    this.DBound = DBound;
-    this.nodeScalerX = nodeScalerX;
-    this.nodeScalerY = nodeScalerY;
-    this.xStretch = 0;
-  }
-  display()
-  {
-    var nodeX, nodeY;
-    nodeX = this.LBound + (packetnum * this.nodeScalerX);
-    nodeY = this.DBound - (altitude * this.nodeScalerY);
-
-    if (nodeX >= RBound)
-    {
-      this.xStretch = nodeX - packetnum;
-    } else  
-    {
-      this.xStretch = 0;
-    }
-
-    circle(nodeX, nodeY, 20);
-    let l = altitudeArray.length;
-
-    for (let i = 0; i < l; i++)
-    {
-      line(packetNumArray[i-1]*this.nodeScalerX - this.xStretch, altitudeArray[i-1]*this.nodeScalerY, packetNumArray[i]*this.nodeScalerX- this.xStretch, altitudeArray[i]*this.nodeScalerY);
-    }
-  }
-
-}
-
 function preload()
 {
   trueSizeX = windowWidth; // "True Size" is the size element of the entire screen. Here, it's defined as the size of the window's width and height.
                            // (this was done so desired screensize could be changed at the top of the script and have the effect cascade down throughout.)
   trueSizeY = windowHeight;
-
-  filePath = '/data.txt';
-
-  result = loadStrings(filePath);
-
 }
 function setup() {
   createCanvas(trueSizeX, trueSizeY); // create the canvas with size to be truesizeX x truesizeY
   solOnePane = new Pane(10, 10, 200, 200, 'Solenoid One', 20, 30, 25);
   solTwoPane = new Pane(10,215,200,405, 'Solenoid Two', 20, 30, 25);
-  LG1 = new LineGraph(10,10,200,200,5,1);
-
-  
 }
 
 function draw() {
   background(245);
-  result = loadStrings(filePath, handleData);
   solOnePane.display();
   solTwoPane.display();
-  LG1.display();
 }
-
-function handleData(result)
-{
-  dataPacket = result[result.length-2];
-  altitude = parseInt(dataPacket.slice(11,19));
-  packetnum = parseInt(dataPacket.slice(2,10));
-  packetNumArray.push(packetnum);
-  altitudeArray.push(altitude);
-
-}
-
