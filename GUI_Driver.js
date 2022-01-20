@@ -2,6 +2,10 @@ var trueSizeX;
 var trueSizeY;
 let edgeSmooth = 15;
 
+let s1plot;
+
+let timer = 0;
+
 class Pane { // 'Pane' object representing the Pane holding a GUI Element. Should be instantiated in setup().
     constructor (x1, y1, width, height, title, titleXPad, titleYPad, titleFontSize) {
       this.x1 = x1;
@@ -13,6 +17,7 @@ class Pane { // 'Pane' object representing the Pane holding a GUI Element. Shoul
       this.titleYPad = titleYPad;
       this.titleFontSize = titleFontSize;
     }
+
     display()
     {
       noFill();
@@ -30,23 +35,33 @@ class Pane { // 'Pane' object representing the Pane holding a GUI Element. Shoul
       textSize(this.titleFontSize);                                                                                   
       let titleText = this.title;
       text(titleText, this.x1 + this.titleXPad, this.y1 + this.titleYPad);
+	
+
     }
 }
 
 function preload()
 {
+  //s1plot = loadImage("s1plot.png");
+}
+
+function setup() {
   trueSizeX = windowWidth; // "True Size" is the size element of the entire screen. Here, it's defined as the size of the window's width and height.
                            // (this was done so desired screensize could be changed at the top of the script and have the effect cascade down throughout.)
   trueSizeY = windowHeight;
-}
-function setup() {
+
   createCanvas(trueSizeX, trueSizeY); // create the canvas with size to be truesizeX x truesizeY
   solOnePane = new Pane(10, 10, 200, 200, 'Solenoid One', 20, 30, 25);
-  solTwoPane = new Pane(10,215,200,405, 'Solenoid Two', 20, 30, 25);
 }
 
 function draw() {
   background(245);
   solOnePane.display();
-  solTwoPane.display();
+  s1plot = loadImage("plot.png", imageLoaded);
+}
+
+function imageLoaded()
+{
+        console.log("Debug");
+	image(s1plot,200,200);
 }
